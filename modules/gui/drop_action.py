@@ -73,6 +73,7 @@ class FileDrop(QObject):
                 args = [external_app_path.as_posix(), self.current_psd_file.resolve().__str__()]
                 Popen(args)
             else:
+                # Default behaviour if no editor set
                 # Open psd thru QDesktopService with OS associated app
                 file_url = QUrl.fromLocalFile(self.current_psd_file.as_posix())
                 QDesktopServices.openUrl(file_url)

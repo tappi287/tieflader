@@ -108,5 +108,6 @@ venv.bak/
 .idea
 _ts
 ui/res
+ui/src
 test
 .vscode/settings.json
