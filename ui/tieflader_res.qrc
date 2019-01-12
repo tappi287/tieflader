@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="main">
+    <file>res/folder.png</file>
+    <file>res/check_box.png</file>
+    <file>res/check_box_empty.png</file>
+    <file>res/splash_screen.webp</file>
+    <file>res/save_alt.png</file>
+    <file>res/close.png</file>
+    <file>res/img.png</file>
+    <file>res/tieflader_icon.png</file>
+  </qresource>
+</RCC>
