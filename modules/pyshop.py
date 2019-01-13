@@ -72,11 +72,17 @@ class PyShop:
             # Resize image with Pillow if necessary
             img = self._resize_image(img)
 
+            # Convert to RGBA
+            if img.mode == 'P':
+                img = img.convert('RGBA')
+
             # Convert Image to NumPy array
             img_np = np.array(img)
 
             # Get number of channels
-            img_channel_num = img_np.shape[2]
+            img_channel_num = 0
+            if len(img_np.shape) > 2:
+                img_channel_num = img_np.shape[2]
 
             # Create list of image channels
             # len(3) - R G B
