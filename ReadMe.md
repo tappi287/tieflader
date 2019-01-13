@@ -32,7 +32,7 @@ and many others. The GUI is build in
    
    
 ##### System Requirements
- [ ] Mac OS X 10.10 Yosemite*
- [ ] Windows 7
+ - [x] Mac OS X 10.10 Yosemite*
+ - [x] Windows 7
 
 *Pillow would like you too
