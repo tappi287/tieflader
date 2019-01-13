@@ -3,9 +3,14 @@
 
     Imported only -ONCE- from main.
 """
+import sys
 from multiprocessing import Queue
 from modules.settings import AppSettings
-from modules.log import init_logging, setup_logging
+from modules.log import init_logging, setup_logging, DefaultLogLevel
+
+# Set log level based on Release / Debug
+if getattr(sys, '_MEIPASS', False):
+    DefaultLogLevel.level = 'INFO'
 
 logging_queue = Queue(-1)
 setup_logging(logging_queue)

@@ -7,6 +7,10 @@ from logging.handlers import QueueHandler, QueueListener
 from modules.app_globals import get_settings_dir, LOG_FILE_NAME
 
 
+class DefaultLogLevel:
+    level = 'DEBUG'
+
+
 def setup_logging(logging_queue):
     # Track calls to this method
     print('Logging setup called: ',
@@ -14,6 +18,8 @@ def setup_logging(logging_queue):
           sys._getframe().f_back.f_code.co_name)
 
     log_file_path = Path(get_settings_dir()) / Path(LOG_FILE_NAME)
+
+    app_level = DefaultLogLevel.level
 
     log_conf = {
         'version': 1,
@@ -59,7 +65,7 @@ def setup_logging(logging_queue):
         'loggers': {
             # Main logger, these handlers will be moved to the QueueListener
             'tieflader': {
-                'handlers': ['file', 'guiHandler', 'console'], 'propagate': False, 'level': 'DEBUG',
+                'handlers': ['file', 'guiHandler', 'console'], 'propagate': False, 'level': f'{app_level}',
                 },
             # Log Window Logger
             'gui_logger': {
@@ -67,7 +73,7 @@ def setup_logging(logging_queue):
                 },
             # Module loggers
             '': {
-                'handlers': ['queueHandler'], 'propagate': False, 'level': 'DEBUG',
+                'handlers': ['queueHandler'], 'propagate': False, 'level': f'{app_level}',
                 }
             }
         }

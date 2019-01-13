@@ -12,7 +12,7 @@ VERSION = '0.75'
 AppSettings.app['version'] = VERSION
 
 # Prepare exception handling
-# sys.excepthook = GuiExceptionHook.exception_hook
+sys.excepthook = GuiExceptionHook.exception_hook
 
 
 def initialize_log_listener():

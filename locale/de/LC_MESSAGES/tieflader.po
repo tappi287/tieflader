@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-01-12 11:24+0100\n"
+"POT-Creation-Date: 2019-01-13 21:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,28 +15,36 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: modules/gui\main_app.py:49
+#: modules/gui\main_app.py:56
+msgid "Keine Nachricht angegeben."
+msgstr ""
+
+#: modules/gui\main_app.py:62
 msgid "Ausnahme aufgetreten: <br><br>"
 msgstr ""
 
-#: modules/gui\main_app.py:50
+#: modules/gui\main_app.py:63
 msgid "Schwerwiegender Fehler"
 msgstr ""
 
-#: modules/gui\main_window.py:44 modules/widgets\file_dialog.py:25
-msgid "Tiff Datei auswaehlen"
-msgstr ""
-
-#: modules/gui\main_window.py:45
-msgid "Tif (*.tif;*.tiff)"
-msgstr ""
-
-#: modules/gui\main_window.py:55
-msgid "RenderKnecht"
+#: modules/gui\main_window.py:54
+msgid "Bilddateien in dieses Fenster ziehen um PSD zu erstellen"
 msgstr ""
 
 #: modules/gui\main_window.py:56
-msgid "Keine Nachricht angegeben."
+msgid "Vorgang abbrechen"
+msgstr ""
+
+#: modules/gui\main_window.py:57
+msgid "< Keine zuletzt verwendete Datei >"
+msgstr ""
+
+#: modules/gui\main_window.py:61 modules/widgets\menu_settings.py:48
+msgid "Mit benutzerdefiniertem Editor öffnen"
+msgstr ""
+
+#: modules/gui\main_window.py:63 modules/widgets\menu_settings.py:50
+msgid "Mit Standardanwendung öffnen"
 msgstr ""
 
 #: modules/gui\path_util.py:79
@@ -51,6 +59,10 @@ msgstr ""
 msgid "Tif (*.tif; *.tiff)"
 msgstr ""
 
+#: modules/widgets\file_dialog.py:25
+msgid "Tiff Datei auswaehlen"
+msgstr ""
+
 #: modules/widgets\file_dialog.py:26
 msgid "Excel Dateien (*.xlsx)"
 msgstr ""
@@ -63,7 +75,11 @@ msgstr ""
 msgid "Verzeichnis auswaehlen ..."
 msgstr ""
 
-#: modules/widgets\menu_file.py:38
+#: modules/widgets\menu_file.py:20
+msgid "Datei"
+msgstr ""
+
+#: modules/widgets\menu_file.py:29
 msgid "Beenden"
 msgstr ""
 
@@ -71,16 +87,28 @@ msgstr ""
 msgid "Über {} GPL v3"
 msgstr ""
 
-#: modules/widgets\menu_info.py:28
+#: modules/widgets\menu_info.py:29
 msgid "Über Qt"
 msgstr ""
 
-#: modules/widgets\menu_info.py:36
+#: modules/widgets\menu_info.py:37
 msgid "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Besuche den <a href=\"https://github.com/tappi287/tieflader\">Quelltext@github</a> dieser Software!<br><br>{0} ist <b>Freie Software</b>: Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation, Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren veröffentlichten Version, weiter verteilen und/oder modifizieren.<br><br>Dieses Programm wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR,; sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten.<br><br>Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe <a href=\"http://www.gnu.org/licenses/\">hier</a>."
 msgstr ""
 
 #: modules/widgets\menu_language.py:19
 msgid "Sprache"
+msgstr ""
+
+#: modules/widgets\menu_settings.py:22
+msgid "Einstellungen"
+msgstr ""
+
+#: modules/widgets\menu_settings.py:28
+msgid "PSD Datei nach dem Erstellen öffnen"
+msgstr ""
+
+#: modules/widgets\menu_settings.py:37
+msgid "Erweiterte Einstellungen"
 msgstr ""
 
 #: modules/widgets\message_box.py:30
@@ -95,11 +123,63 @@ msgstr ""
 msgid "Frage"
 msgstr ""
 
-#: modules/widgets\message_box.py:46
+#: modules/widgets\message_box.py:46 modules/widgets\settings_dialog.py:184
 msgid "OK"
 msgstr ""
 
-#: modules/widgets\message_box.py:47
+#: modules/widgets\message_box.py:47 modules/widgets\settings_dialog.py:188
 msgid "Abbrechen"
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:28
+msgid "{} - Einstellungsdialog"
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:59
+msgid "Schnell - niedrige Qualität."
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:60
+msgid "Schnell - vertretbare Qualität beim Verkleinern."
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:61
+msgid "Langsam - Sehr gute Qualität beim Verkleinern und Vergrößern"
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:62
+msgid "Sehr Langsam - Sehr gute Qualität. Ergebnis erscheint schärfer."
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:120
+msgid "<h3>Erweiterte Einstellungen</h3><h4 style=\"margin: 2px 0;\">Auflösung</h4>Pixel-Auflösung der Photoshop Datei. Bildinhalte der Ebenen werden zu dieser Auflösung skaliert."
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:128
+msgid "Auflösung"
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:141
+msgid "<h4 style=\"margin: 2px 0;\">Umrechnungsfilter</h4>Filter der bei Größenänderungen angewandt wird.<br>"
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:145
+msgid "Filter wählen:"
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:156
+msgid "<h4 style=\"margin: 2px 0;\">Photoshop Editor Pfad</h4>Pfad zur ausführbaren Anwendung angeben mit der das erstellte Dokument geöffnet werden soll.<br><br>Sollte kein Pfad festgelegt werden(Voreinstellung) wird die vom Betriebssystem assozierte Anwendung zum öffnen des Dokumentes verwendet. Die Voreinstellung ist die zuverlässigste Einstellung."
+msgstr ""
+
+#: modules/widgets\settings_dialog.py:192
+msgid "Zurücksetzen"
+msgstr ""
+
+#: modules\run_pyshop.py:30
+msgid "Dateien"
+msgstr ""
+
+#: modules\run_pyshop.py:31
+msgid "Stapel"
 msgstr ""
 
