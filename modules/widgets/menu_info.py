@@ -20,12 +20,13 @@ class InfoMenu(QMenu):
         self.software_title = '{} v{}'.format(APP_NAME.capitalize(), self.ui.app.version)
         self.about_title = _("Über {} GPL v3").format(self.software_title)
 
-        icon = IconRsc.get_icon('help')
+        icon = IconRsc.get_icon('tieflader_icon')
         info = QAction(icon, self.about_title, self)
         info.triggered.connect(self.show_about_box)
         self.addAction(info)
 
-        qt_info = QAction(_('Über Qt'), self)
+        icon = IconRsc.get_icon('info')
+        qt_info = QAction(icon, _('Über Qt'), self)
         qt_info.triggered.connect(self.show_about_qt)
         self.addAction(qt_info)
 

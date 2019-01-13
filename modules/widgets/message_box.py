@@ -10,7 +10,7 @@ _ = lang.gettext
 
 def get_msg_box_icon(icon_key):
     if not icon_key:
-        return IconRsc.get_icon('RK_Icon')
+        return IconRsc.get_icon('tieflader_icon')
     else:
         return IconRsc.get_icon(icon_key)
 

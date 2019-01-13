@@ -28,7 +28,7 @@ class SettingsMenu(QMenu):
         check_icon = IconRsc.get_icon('check_box_empty')
         check_icon.addPixmap(IconRsc.get_pixmap('check_box'), QIcon.Normal, QIcon.On)
 
-        self.open_action = QAction(check_icon, _('Photoshop Datei nach dem Erstellen öffnen?'), self)
+        self.open_action = QAction(check_icon, _('Photoshop Datei nach dem Erstellen öffnen'), self)
         self.open_action.setCheckable(True)
         self.open_action.setChecked(AppSettings.app['open_editor'])
         self.open_action.toggled.connect(self.toggle_psd_open_action)
@@ -36,8 +36,8 @@ class SettingsMenu(QMenu):
 
         self.addSeparator()
 
-        img_icon = IconRsc.get_icon('img')
-        set_ps_path = QAction(img_icon, _('Manuellen Pfad zur ausführbaren Photoshop Programmdatei angeben.'), self)
+        img_icon = IconRsc.get_icon('setting')
+        set_ps_path = QAction(img_icon, _('Manuellen Pfad zur ausführbaren Photoshop Applikation angeben'), self)
         set_ps_path.triggered.connect(self.open_path_window)
         self.addAction(set_ps_path)
 
@@ -60,14 +60,17 @@ class SettingsMenu(QMenu):
                 AppSettings.app['editor_path'] = ''
 
 
-class PhotoshopPathWin(QDialog):
-    psd_path = Path('.')
-
+class SettingsDialog(QDialog):
     def __init__(self, ui):
-        super(PhotoshopPathWin, self).__init__(parent=ui)
+        super(SettingsDialog, self).__init__(parent=ui)
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
-        self.setWindowTitle(_('{} - Pfad zu Photoshop angeben').format(APP_NAME.capitalize()))
+        self.setWindowTitle(_('{} - Einstellungsdialog').format(APP_NAME.capitalize()))
         self.resize(512, 150)
+
+
+class PhotoshopPathWin(SettingsDialog):
+    def __init__(self, ui):
+        super(PhotoshopPathWin, self).__init__(ui)
 
         vbox = QVBoxLayout(self)
         box = QHBoxLayout()
@@ -76,7 +79,9 @@ class PhotoshopPathWin(QDialog):
         self.desc = QLabel(self)
         self.desc.setWordWrap(True)
         self.desc.setText(_('<h3>Photoshop Pfad</h3>'
-                            'Pfad zur ausführbaren Anwendung angeben.<br>'))
+                            'Pfad zur ausführbaren Anwendung angeben.<br><br>'
+                            'Wird kein Pfad festgelegt wird die vom Betriebssystem assozierte Anwendung '
+                            'zum öffnen des Dokumentes verwendet(zuverlässiger).'))
         vbox.addWidget(self.desc)
         vbox.addLayout(box)
 
@@ -94,17 +99,27 @@ class PhotoshopPathWin(QDialog):
         self.path_util.path_changed.connect(self.update_path)
 
         vbox.addLayout(lower_box)
+
         ok_btn = QPushButton(_('OK'), self)
         ok_btn.setDefault(False)
         ok_btn.pressed.connect(self.accept)
+
         cancel_btn = QPushButton(_('Abbrechen'), self)
         cancel_btn.setDefault(True)
         cancel_btn.pressed.connect(self.reject)
 
+        reset_btn = QPushButton(_('Zurücksetzen'))
+        reset_btn.pressed.connect(self.reset)
+
         lower_box.addWidget(ok_btn)
         lower_box.addWidget(cancel_btn)
+        lower_box.addWidget(reset_btn)
         lower_box.setAlignment(Qt.AlignHCenter)
 
     def update_path(self, user_path: Path):
         if user_path.exists():
             AppSettings.app['editor_path'] = user_path.as_posix()
+
+    def reset(self):
+        AppSettings.app['editor_path'] = ''
+        self.reject()

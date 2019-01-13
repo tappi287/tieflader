@@ -10,6 +10,8 @@
 		"splash_screen": ":/main/res/splash_screen.webp",
 		"check_box": ":/main/res/check_box.png",
 		"check_box_empty": ":/main/res/check_box_empty.png",
-		"folder": ":/main/res/folder.png"
+		"folder": ":/main/res/folder.png",
+		"info": ":/main/res/info.png",
+		"setting": ":/main/res/setting.png"
 	}
 }

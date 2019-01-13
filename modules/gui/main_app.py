@@ -1,6 +1,7 @@
 import sys
 
 from PySide2 import QtWidgets
+from PySide2.QtCore import QTimer
 
 from modules.app_globals import APP_NAME
 from modules.detect_language import get_translation
@@ -22,8 +23,6 @@ class MainApp(QtWidgets.QApplication):
     def __init__(self, version, exception_hook: GuiExceptionHook=None):
         super(MainApp, self).__init__(sys.argv)
 
-        splash = show_splash_screen_movie(self)
-
         self.version = version
 
         self.ui = MainWindow(self)
@@ -35,7 +34,21 @@ class MainApp(QtWidgets.QApplication):
         # self.system_tray = QSystemTrayIcon(self.ui.app_icon, self)
         # self.system_tray.hide()
 
-        splash.finish(self.ui)
+        self.splash = show_splash_screen_movie(self)
+        self.splash.movie.finished.connect(self.show_ui)
+
+        # Make sure we show the ui if there is a problem with the splash screen movie
+        QTimer().singleShot(2500, self.show_ui)
+
+    def show_ui(self):
+        """ Used when splash screen finished """
+        if self.ui.isVisible():
+            return
+
+        if self.splash is not None:
+            self.splash.hide()
+            self.splash.deleteLater()
+
         self.ui.show()
 
     def show_tray_notification(self,
@@ -44,12 +57,6 @@ class MainApp(QtWidgets.QApplication):
         self.system_tray.show()
         self.system_tray.showMessage(title, message, self.rk_icon)
         self.system_tray.hide()
-
-    def play_intro(self):
-        self.intro_mov.intro()
-
-    def play_checkmark(self):
-        self.intro_mov.checkmark()
 
     def app_exception(self, msg):
         msg = _("Ausnahme aufgetreten: <br><br>") + msg.replace('\n', '<br>')

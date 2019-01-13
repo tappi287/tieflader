@@ -50,8 +50,7 @@ class LanguageMenu(QMenu):
 
         AppSettings.language = l
 
-        msg_box = GenericMsgBox(self.ui, title, msg,
-                                icon_key='reset')
+        msg_box = GenericMsgBox(self.ui, title, msg)
         msg_box.exec()
 
     def update_menu(self):

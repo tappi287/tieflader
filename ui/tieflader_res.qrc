@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="main">
+    <file>res/setting.png</file>
+    <file>res/info.png</file>
     <file>res/folder.png</file>
     <file>res/check_box.png</file>
     <file>res/check_box_empty.png</file>
