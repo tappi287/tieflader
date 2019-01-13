@@ -153,6 +153,7 @@ class PyShop:
             )
 
         with open(psd_file, 'wb') as file:
+            # TODO: Catch write only locations
             psd_stacked.write(file)
 
         return psd_file.as_posix()
