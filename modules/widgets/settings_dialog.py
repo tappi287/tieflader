@@ -27,7 +27,7 @@ class SettingsDialog(QDialog):
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setWindowTitle(_('{} - Einstellungsdialog').format(APP_NAME.capitalize()))
 
-        min_size = (768, 384)
+        min_size = (850, 512)
 
         self.setMinimumSize(*min_size)
 
@@ -38,9 +38,6 @@ class SettingsDialog(QDialog):
 
         self.setStyleSheet('QLabel {'
                            '    padding: 0; margin: 0 13px 0 0;'
-                           '}'
-                           'QLineEdit, QComboBox {'
-                           '    margin:  0 13px 0 0;'
                            '}'
                            'QPushButton {'
                            '    min-width: 180px; min-height: 30px;'
@@ -112,6 +109,7 @@ class PhotoshopSettings(SettingsDialog):
         filter_box = QHBoxLayout()
         filter_box.setContentsMargins(13, 13, 13, 26)
         path_box = QHBoxLayout()
+        path_box.setSpacing(13)
         path_box.setContentsMargins(13, 13, 13, 26)
         dialog_btn_box = QHBoxLayout()
         dialog_btn_box.setSpacing(13)

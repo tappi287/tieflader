@@ -96,7 +96,7 @@ class FileDrop(QObject):
         folder = self.current_psd_file.parent
 
         if folder.exists() and folder.is_dir():
-            dir_url = QUrl(folder.as_posix())
+            dir_url = QUrl.fromLocalFile(folder.as_posix())
             QDesktopServices.openUrl(dir_url)
 
     def update_last_file_widget(self):

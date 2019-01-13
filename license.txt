@@ -1,4 +1,4 @@
-Tiffy - Copyright (C) 2018 Stefan Tapper
+Tieflader - Copyright (C) 2018 Stefan Tapper
 
 This software is licensed under the GNU General Public License v3.
 Please read the license terms below.
