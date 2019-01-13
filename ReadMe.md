@@ -34,6 +34,7 @@ and many others. The GUI is build in
 ##### System Requirements
  - [x] Mac OS X 10.10 Yosemite*
  - [x] Windows > 7
+ - [ ] Adobe Photoshop is *not* required
 
  *`Pillow` *would like you too. Image libraries require* `Intel x64 CPU` 
  *They have added those to the fruity machines haven't they? Steve?*
