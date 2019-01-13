@@ -5,20 +5,20 @@ to it's load bed.
 It really is just a GUI for the outstanding libaries 
 <a href="https://github.com/mdboom/pytoshop">pytoshop</a> and 
 <a href="https://pillow.readthedocs.io/">Pillow</a> 
-and many others. The GUI is build in 
+and a few others. The GUI is build in 
 <a href="https://www.qt.io/qt-for-python">Qt for Python</a> aka `PySide2`. 
 
 
 ### Let's ride
   - Slowly steer your web rider towards the
-    <b> <a href="https://github.com/tappi287/tiffy/releases">Download Releases</a></b>
+    <b> <a href="https://github.com/tappi287/tieflader/releases">Download Releases</a></b>
     page and download a executable for your OS/platform.
     
     ##
     
     ##### System Requirements
     - [x] Mac OS X 10.10 Yosemite*
-    - [x] Windows > 7
+    - [x] Windows >= 7
     - [ ] Adobe Photoshop is *not* required
 
         *`Pillow` *would like you too. Image libraries require* 
@@ -27,13 +27,12 @@ and many others. The GUI is build in
         fruity machines haven't they? Steve?*
 ##
 
-#### Current Limitations
+### Current Limitations
   - Image scaling does not respect aspect ratios, the current version will
   *not* preserve the aspect ratios of input images and forcefully scale
   everything to the size you have set for the Psd document.
   - Just like in Photoshop itself, image down scaling is done without 
-  proper gamma conversion.
-  <a href="http://entropymine.com/imageworsener/gamma/">
+  proper gamma conversion. <a href="http://entropymine.com/imageworsener/gamma/">
   Read more about this very common issue
   </a>
 
