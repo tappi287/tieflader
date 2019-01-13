@@ -10,29 +10,30 @@ and many others. The GUI is build in
 
 
 ### Let's ride
-  - slowly steer your web browsing device towards the
+  - Slowly steer your web rider towards the
     <a href="https://github.com/tappi287/tiffy/releases">Releases</a> page and download a executable
-    for your OS/platform
+    for your OS/platform.
 
 
 #### Running Tieflader from your local Python Interpreter
 1. Clone this repository
 2. Goto <a href="https://python.org">python.org</a> and get Python interpreter 3.7.1 for your OS
-3. `path to python/python -m pip install pipenv` to install <a href="https://pipenv.readthedocs.io/">pipenv</a>
-4. `path to this project/pipenv update` (the path where you cloned this project and the pipfile lives)
+3. `<path to python>/python -m pip install pipenv` to install <a href="https://pipenv.readthedocs.io/">pipenv</a>
+4. `<path to this project>/pipenv update` (the path where you cloned this project and the pipfile lives)
 5. `pipenv shell` to activate your newly created virtual environment
-6. from the pipenv shell `python tiffy.py` to run this app
+6. from the pipenv shell `python tieflader.py` to run this app
 
 
 #### Building Tiffy with PyInstaller
 1. Make sure you can run the app following the instructions above
-2. From your venv/pipenv shell run `pyinstaller tiffy_win.spec`
-   to eg. build a windows executable directory or `pyinstaller tiffy_osx.spec`
-   to build a OSX app package
+2. From your venv/pipenv shell run `pyinstaller tieflader_win.spec`
+   to eg. build a windows executable directory or `pyinstaller tieflader_osx.spec`
+   to build an OSX app package
    
    
 ##### System Requirements
- [ ] Mac OS X 10.10 Yosemite*
- [ ] Windows 7
+ - [x] Mac OS X 10.10 Yosemite*
+ - [x] Windows > 7
 
-*Pillow would like you too
+ *`Pillow` *would like you too. Image libraries require* `Intel x64 CPU` 
+ *They have added those to the fruity machines haven't they? Steve?*
