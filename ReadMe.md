@@ -27,7 +27,7 @@ and a few others. The GUI is build in
         fruity machines haven't they? Steve?*
 ##
 
-#### Current Limitations
+### Current Limitations
   - Image scaling does not respect aspect ratios, the current version will
   *not* preserve the aspect ratios of input images and forcefully scale
   everything to the size you have set for the Psd document.
