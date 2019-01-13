@@ -32,8 +32,7 @@ and a few others. The GUI is build in
   *not* preserve the aspect ratios of input images and forcefully scale
   everything to the size you have set for the Psd document.
   - Just like in Photoshop itself, image down scaling is done without 
-  proper gamma conversion.
-  <a href="http://entropymine.com/imageworsener/gamma/">
+  proper gamma conversion. <a href="http://entropymine.com/imageworsener/gamma/">
   Read more about this very common issue
   </a>
 
