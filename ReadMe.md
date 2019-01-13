@@ -24,7 +24,7 @@ and many others. The GUI is build in
 6. from the pipenv shell `python tieflader.py` to run this app
 
 
-#### Building Tiffy with PyInstaller
+#### Building Tieflader with PyInstaller
 1. Make sure you can run the app following the instructions above
 2. From your venv/pipenv shell run `pyinstaller tieflader_win.spec`
    to eg. build a windows executable directory or `pyinstaller tieflader_osx.spec`
