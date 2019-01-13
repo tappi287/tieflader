@@ -11,9 +11,33 @@ and many others. The GUI is build in
 
 ### Let's ride
   - Slowly steer your web rider towards the
-    <a href="https://github.com/tappi287/tiffy/releases">Releases</a> page and download a executable
-    for your OS/platform.
+    <b> <a href="https://github.com/tappi287/tiffy/releases">Download Releases</a></b>
+    page and download a executable for your OS/platform.
+    
+    ##
+    
+    ##### System Requirements
+    - [x] Mac OS X 10.10 Yosemite*
+    - [x] Windows > 7
+    - [ ] Adobe Photoshop is *not* required
 
+        *`Pillow` *would like you too. Image libraries require* 
+        `Intel/AMD x64 CPU` 
+        *They have added those to the 
+        fruity machines haven't they? Steve?*
+##
+
+#### Current Limitations
+  - Image scaling does not respect aspect ratios, the current version will
+  *not* preserve the aspect ratios of input images and forcefully scale
+  everything to the size you have set for the Psd document.
+  - Just like in Photoshop itself, image down scaling is done without 
+  proper gamma conversion.
+  <a href="http://entropymine.com/imageworsener/gamma/">
+  Read more about this very common issue
+  </a>
+
+##
 
 #### Running Tieflader from your local Python Interpreter
 1. Clone this repository
@@ -30,11 +54,4 @@ and many others. The GUI is build in
    to eg. build a windows executable directory or `pyinstaller tieflader_osx.spec`
    to build an OSX app package
    
-   
-##### System Requirements
- - [x] Mac OS X 10.10 Yosemite*
- - [x] Windows > 7
- - [ ] Adobe Photoshop is *not* required
 
- *`Pillow` *would like you too. Image libraries require* `Intel x64 CPU` 
- *They have added those to the fruity machines haven't they? Steve?*

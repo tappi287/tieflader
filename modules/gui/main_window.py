@@ -1,5 +1,8 @@
+from pathlib import Path
+
 from PySide2.QtWidgets import QApplication, QMainWindow
 
+from modules import AppSettings
 from modules.app_globals import Resource
 from modules.detect_language import get_translation
 from modules.gui.drop_action import FileDrop
@@ -48,4 +51,13 @@ class MainWindow(QMainWindow):
         self.app.quit()
 
     def translations(self):
-        pass
+        self.appLabel.setText(_('Bilddateien in dieses Fenster ziehen um PSD zu erstellen'))
+
+        self.cancelBtn.setText(_('Vorgang abbrechen'))
+        self.lastFileBtn.setText(_('< Keine zuletzt verwendete Datei >'))
+
+        editor = Path(AppSettings.app['editor_path'])
+        if editor.exists() and editor.is_file():
+            self.lastFileBtn.setDescription(_('Mit benutzerdefiniertem Editor öffnen'))
+        else:
+            self.lastFileBtn.setDescription(_('Mit Standardanwendung öffnen'))

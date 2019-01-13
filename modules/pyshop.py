@@ -28,10 +28,13 @@ class PyShop:
     default_img_size = (1920, 1080)
 
     # --- Supported image file suffixes/image types ---
-    supported_img = ['.png', '.jpg', '.jpeg', '.bmp']
+    supported_img = ['.png', '.jpg', '.jpeg', '.bmp', '.tif', '.tiff']
+
+    # --- Resampling method ---
+    default_resample_filter = Image.BICUBIC
 
     def __init__(self,
-                 target_size: Tuple[int, int]=(1920, 1080),
+                 target_size: Tuple[int, int]=(1920, 1080), resampling_filter=None
                  ):
         # --- List holding Psd layers ---
         self.layer_ls: List[nested_layers.Layer] = list()
@@ -40,6 +43,11 @@ class PyShop:
         self.size: Tuple[int, int] = self.default_img_size
         if target_size:
             self.size = target_size
+
+        # --- Pillow Resampling Filter ---
+        self.resample_filter = self.default_resample_filter
+        if resampling_filter is not None:
+            self.resample_filter = resampling_filter
 
     @staticmethod
     def _add_layers_from_existing_psd(psd_file_obj) -> List[nested_layers.Layer]:
@@ -52,7 +60,7 @@ class PyShop:
     def _resize_image(self, pil_img: Image):
         """ Resize Layer content image to psd instance size if necessary """
         if pil_img.size != self.size:
-            return pil_img.resize(self.size, resample=Image.BICUBIC)
+            return pil_img.resize(self.size, resample=self.resample_filter)
 
         return pil_img
 
@@ -152,8 +160,11 @@ class PyShop:
             color_mode=ColorMode.rgb
             )
 
-        with open(psd_file, 'wb') as file:
-            # TODO: Catch write only locations
-            psd_stacked.write(file)
+        try:
+            # TODO: Alternative location when write only location
+            with open(psd_file, 'wb') as file:
+                psd_stacked.write(file)
+        except Exception as e:
+            LOGGER.error('Error writing Photoshop file: %s', e)
 
         return psd_file.as_posix()

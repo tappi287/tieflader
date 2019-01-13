@@ -81,7 +81,9 @@ class AppSettings:
         introduction_shown=False,
         recent_files=list(),
         open_editor=False,
-        editor_path='.'
+        editor_path='.',
+        psd_size=(1920, 1080),
+        resampling_filter='Bicubic'
         )
 
     language = 'de'

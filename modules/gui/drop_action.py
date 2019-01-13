@@ -43,12 +43,17 @@ class FileDrop(QObject):
         self.file_timer.setSingleShot(True)
         self.file_timer.timeout.connect(self._open_psd_file)
 
+        # Hide cancel btn
+        self.ui.cancelBtn.hide()
+        self.ui.lastFileWidget.hide()
+
         self.py_shop_thread = CreateLayeredPsdThread(self, list())
 
     def thread_started(self):
         self.ui.progress_widget.progress.setValue(0)
         self.ui.progress_widget.progress.show()
         self.ui.cancelBtn.setEnabled(True)
+        self.ui.cancelBtn.show()
 
     def thread_progress(self):
         progress = self.ui.progress_widget.progress.value()
@@ -58,14 +63,23 @@ class FileDrop(QObject):
     def thread_finished(self):
         self.ui.progress_widget.progress.hide()
         self.ui.cancelBtn.setEnabled(False)
+        self.ui.cancelBtn.hide()
 
     def thread_file_created(self, psd_file: Path):
         self.current_psd_file = psd_file
         self.file_timer.start()
 
+        self.update_last_file_widget()
+
+    def _btn_open_psd_file(self):
+        # Open Psd regardless of current App Setting
+        self._open_psd_file(ignore=True)
+
     # noinspection PyCallByClass,PyTypeChecker
-    def _open_psd_file(self):
-        if AppSettings.app['open_editor']:
+    def _open_psd_file(self, ignore: bool=False):
+        self.ui.lastFileWidget.setEnabled(True)
+
+        if AppSettings.app['open_editor'] or ignore:
             external_app_path: Path = Path(AppSettings.app['editor_path'])
 
             if external_app_path.exists() and external_app_path.is_file():
@@ -77,6 +91,26 @@ class FileDrop(QObject):
                 # Open psd thru QDesktopService with OS associated app
                 file_url = QUrl.fromLocalFile(self.current_psd_file.as_posix())
                 QDesktopServices.openUrl(file_url)
+
+    def _open_psd_folder(self):
+        folder = self.current_psd_file.parent
+
+        if folder.exists() and folder.is_dir():
+            dir_url = QUrl(folder.as_posix())
+            QDesktopServices.openUrl(dir_url)
+
+    def update_last_file_widget(self):
+        if AppSettings.app['open_editor']:
+            # Disable lastFileWidget until
+            # automatic open action is performed
+            self.ui.lastFileWidget.setEnabled(False)
+
+        self.ui.lastFileBtn.setText(self.current_psd_file.name)
+        self.ui.lastFileBtn.pressed.connect(self._btn_open_psd_file)
+
+        self.ui.lastFileFolderBtn.pressed.connect(self._open_psd_folder)
+
+        self.ui.lastFileWidget.show()
 
     def eventFilter(self, obj, event):
         if event.type() == QEvent.DragEnter:

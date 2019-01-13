@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>622</width>
-    <height>544</height>
+    <width>589</width>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,13 @@
   <property name="windowIcon">
    <iconset resource="tieflader_res.qrc">
     <normaloff>:/main/res/tieflader_icon.png</normaloff>:/main/res/tieflader_icon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLabel, QPushButton {font-family: &quot;Segoe UI&quot;, &quot;Helvetica&quot;, &quot;Helvetica Neue&quot;; font-size: 15px;}
+QPushButton {background: rgb(220, 220, 220); border-radius: 5px;}
+QPushButton::hover {background: rgb(36, 104, 83);}
+QCommandLinkButton {background: none;}
+QCommandLinkButton::hover {background: rgb(210, 210, 210);}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -51,6 +58,22 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="appLabel">
+      <property name="styleSheet">
+       <string notr="true">font-size: 17px;</string>
+      </property>
+      <property name="text">
+       <string>Bilddateien in dieses Fenster ziehen um PSD zu erstellen</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item>
@@ -103,6 +126,43 @@
       </layout>
      </widget>
     </item>
+    <item>
+     <widget class="QWidget" name="lastFileWidget" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QCommandLinkButton" name="lastFileBtn">
+         <property name="text">
+          <string>&lt;Keine zuletzt verwendete Datei&gt;</string>
+         </property>
+         <property name="icon">
+          <iconset resource="tieflader_res.qrc">
+           <normaloff>:/main/res/img.png</normaloff>:/main/res/img.png</iconset>
+         </property>
+         <property name="description">
+          <string>Mit benutzerdefiniertem Editor öffnen</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="lastFileFolderBtn">
+         <property name="minimumSize">
+          <size>
+           <width>35</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="tieflader_res.qrc">
+           <normaloff>:/main/res/folder.png</normaloff>:/main/res/folder.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -110,7 +170,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>622</width>
+     <width>589</width>
      <height>31</height>
     </rect>
    </property>

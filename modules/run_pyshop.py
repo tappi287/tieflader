@@ -4,9 +4,11 @@ from typing import List
 
 from PySide2.QtCore import QObject, Signal, Slot
 
+from modules import AppSettings
 from modules.detect_language import get_translation
 from modules.log import init_logging
 from modules.pyshop import PyShop
+from modules.widgets.settings_dialog import ResampleFilterSetting
 
 LOGGER = init_logging(__name__)
 
@@ -34,6 +36,12 @@ class CreateLayeredPsdThread(Thread):
         self.files = files
         self.abort = False
 
+        self.size = AppSettings.app['psd_size']
+
+        for (name, filter_setting, desc) in ResampleFilterSetting.values:
+            if name == AppSettings.app['resampling_filter']:
+                self.resample_filter = filter_setting
+
         self.signals = CreateLayeredPsdSignals()
 
         if files:
@@ -54,9 +62,9 @@ class CreateLayeredPsdThread(Thread):
             return
 
         self.signals.started.emit()
-        pyshop = PyShop()
+        pyshop = PyShop(self.size, self.resample_filter)
 
-        for file in self.files:
+        for file in reversed(sorted(self.files)):
             self.signals.progress_step.emit()
 
             if self.abort:
