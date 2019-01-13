@@ -5,7 +5,7 @@ to it's load bed.
 It really is just a GUI for the outstanding libaries 
 <a href="https://github.com/mdboom/pytoshop">pytoshop</a> and 
 <a href="https://pillow.readthedocs.io/">Pillow</a> 
-and many others. The GUI is build in 
+and a few others. The GUI is build in 
 <a href="https://www.qt.io/qt-for-python">Qt for Python</a> aka `PySide2`. 
 
 
@@ -18,7 +18,7 @@ and many others. The GUI is build in
     
     ##### System Requirements
     - [x] Mac OS X 10.10 Yosemite*
-    - [x] Windows > 7
+    - [x] Windows >= 7
     - [ ] Adobe Photoshop is *not* required
 
         *`Pillow` *would like you too. Image libraries require* 
