@@ -37,8 +37,8 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "dist\tiffy\tiffy.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "dist\tiffy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\tieflader\Tieflader.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\tieflader\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
