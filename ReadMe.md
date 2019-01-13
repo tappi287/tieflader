@@ -11,7 +11,7 @@ and a few others. The GUI is build in
 
 ### Let's ride
   - Slowly steer your web rider towards the
-    <b> <a href="https://github.com/tappi287/tiffy/releases">Download Releases</a></b>
+    <b> <a href="https://github.com/tappi287/tieflader/releases">Download Releases</a></b>
     page and download a executable for your OS/platform.
     
     ##
