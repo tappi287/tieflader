@@ -5,7 +5,6 @@ from PySide2.QtCore import QTimer
 
 from modules.app_globals import APP_NAME
 from modules.detect_language import get_translation
-from modules.gui.gui_utils import GuiExceptionHook
 from modules.gui.main_window import MainWindow
 from modules.log import init_logging
 from modules.widgets.message_box import GenericMsgBox
@@ -20,16 +19,16 @@ _ = lang.gettext
 
 
 class MainApp(QtWidgets.QApplication):
-    def __init__(self, version, exception_hook: GuiExceptionHook=None):
+    def __init__(self, version, app_exception_hook=None):
         super(MainApp, self).__init__(sys.argv)
 
         self.version = version
 
         self.ui = MainWindow(self)
 
-        if exception_hook:
-            exception_hook.app = self
-            exception_hook.setup_signal_destination(self.app_exception)
+        if app_exception_hook:
+            app_exception_hook.app = self
+            app_exception_hook.setup_signal_destination(self.app_exception)
 
         # self.system_tray = QSystemTrayIcon(self.ui.app_icon, self)
         # self.system_tray.hide()

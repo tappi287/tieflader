@@ -5,10 +5,7 @@ from typing import Union, Any
 
 from modules.app_globals import Resource, UI_PATH, UI_PATHS_FILE, SETTINGS_FILE
 from modules.app_globals import get_settings_dir
-from modules.log import init_logging
 from modules.detect_language import setup_translation
-
-LOGGER = init_logging(__name__)
 
 
 def delayed_log_setup():
@@ -27,7 +24,7 @@ class Settings:
             with open(file, 'r') as f:
                 load_dict = json.load(f, encoding='utf-8')
         except Exception as e:
-            LOGGER.error('Could not load setting data:\n%s', e)
+            print('Could not load setting data:\n', e)
             return
 
         for key, attr in load_dict.items():
@@ -95,7 +92,7 @@ class AppSettings:
         file = Path(cls.get_settings_path())
 
         if not file or not file.exists():
-            LOGGER.warning('Could not locate settings file! Using default settings!')
+            print('Could not locate settings file! Using default settings!')
             return
 
         default_settings = dict()
@@ -110,7 +107,7 @@ class AppSettings:
                 cls.app[k] = v
 
         cls.setup_lang()
-        LOGGER.debug('AppSettings successfully loaded from file.')
+        print('AppSettings successfully loaded from file.')
 
     @classmethod
     def save(cls) -> None:
@@ -125,7 +122,7 @@ class AppSettings:
     @staticmethod
     def setup_lang():
         setup_translation(language=AppSettings.language)
-        LOGGER.debug('Application language loaded from settings: %s', AppSettings.language)
+        print('Application language loaded from settings: ', AppSettings.language)
 
     @classmethod
     def load_ui_resources(cls) -> bool:

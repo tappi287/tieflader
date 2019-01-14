@@ -2,30 +2,26 @@ import sys
 import logging
 from queue import Queue
 
+from modules.gui.gui_utils import GuiExceptionHook
+from modules.settings import delayed_log_setup
 from ui import gui_resource
 from modules import AppSettings
 from modules.gui.main_app import MainApp
-from modules.gui.gui_utils import GuiExceptionHook
-from modules.log import init_logging, setup_log_queue_listener
+from modules.app_globals import APP_NAME
+from modules.log import init_logging, setup_log_queue_listener, setup_logging
 
-VERSION = '0.76'
+VERSION = '0.85'
 AppSettings.app['version'] = VERSION
 
-# Prepare exception handling
 sys.excepthook = GuiExceptionHook.exception_hook
 
 
-def initialize_log_listener():
+def initialize_log_listener(logging_queue):
     global LOGGER
-    LOGGER = init_logging('tieflader')
-
-    try:
-        log_queue = AppSettings.log_queue
-    except AttributeError or ReferenceError:
-        log_queue = Queue(-1)
+    LOGGER = init_logging(APP_NAME)
 
     # This will move all handlers from LOGGER to the queue listener
-    log_listener = setup_log_queue_listener(LOGGER, log_queue)
+    log_listener = setup_log_queue_listener(LOGGER, logging_queue)
 
     return log_listener
 
@@ -45,20 +41,32 @@ def main():
     #
     # ---- StartUp ----
     # Start log queue listener in it's own thread
-    log_listener = initialize_log_listener()
+    logging_queue = Queue(-1)
+    setup_logging(logging_queue)
+    log_listener = initialize_log_listener(logging_queue)
     log_listener.start()
 
-    LOGGER.debug('---------------------------------------')
-    LOGGER.debug('Application start.')
+    # Setup KnechtSettings logger
+    delayed_log_setup()
 
-    app = MainApp(VERSION)
+    LOGGER.info('---------------------------------------')
+    LOGGER.info('Application start.')
+
+    AppSettings.load()
+
+    if not AppSettings.load_ui_resources():
+        LOGGER.fatal('Can not locate UI resource files! Shutting down application.')
+        shutdown(log_listener)
+        return
+
+    app = MainApp(VERSION, GuiExceptionHook)
     result = app.exec_()
 
     #
     #
     # ---- Application Result ----
-    LOGGER.debug('---------------------------------------')
-    LOGGER.debug('Qt Application finished with exitcode: %s', result)
+    LOGGER.info('---------------------------------------')
+    LOGGER.info('Qt Application finished with exitcode: %s', result)
     AppSettings.save()
     #
     #
