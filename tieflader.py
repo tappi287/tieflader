@@ -8,7 +8,7 @@ from modules.gui.main_app import MainApp
 from modules.gui.gui_utils import GuiExceptionHook
 from modules.log import init_logging, setup_log_queue_listener
 
-VERSION = '0.75'
+VERSION = '0.76'
 AppSettings.app['version'] = VERSION
 
 # Prepare exception handling
