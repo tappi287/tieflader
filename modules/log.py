@@ -1,10 +1,10 @@
-import sys
-from pathlib import Path
 import logging
 import logging.config
-
+import sys
 from logging.handlers import QueueHandler, QueueListener
-from modules.app_globals import get_settings_dir, LOG_FILE_NAME
+from pathlib import Path
+
+from modules.app_globals import LOG_FILE_NAME, get_settings_dir, APP_NAME
 
 
 class DefaultLogLevel:
@@ -18,8 +18,6 @@ def setup_logging(logging_queue):
           sys._getframe().f_back.f_code.co_name)
 
     log_file_path = Path(get_settings_dir()) / Path(LOG_FILE_NAME)
-
-    app_level = DefaultLogLevel.level
 
     log_conf = {
         'version': 1,
@@ -40,12 +38,10 @@ def setup_logging(logging_queue):
                 'format': '%(asctime)s.%(msecs)03d %(name)s %(levelname)s: %(message)s',
                 'datefmt': '%d.%m.%Y %H:%M:%S'
                 },
-            'queue_formatter': {
-                'format': '%(asctime)s %(name)s %(levelname)s: %(message)s', 'datefmt': '%d.%m.%Y %H:%M'},
             },
         'handlers': {
             'console': {
-                'level': 'DEBUG', 'class': 'logging.StreamHandler',
+                'level': 'INFO', 'class': 'logging.StreamHandler',
                 'stream': 'ext://sys.stdout', 'formatter': 'simple'
                 },
             'guiHandler': {
@@ -59,13 +55,15 @@ def setup_logging(logging_queue):
                 },
             'queueHandler': {
                 'level': 'DEBUG', 'class': 'logging.handlers.QueueHandler',
-                'queue': logging_queue, 'formatter': 'queue_formatter',
+                # From Python 3.7.1 defining a formatter will output the formatter of the queueHandler
+                # as well as the re-routed handler formatter eg. console -> queue listener
+                'queue': logging_queue
                 },
             },
         'loggers': {
             # Main logger, these handlers will be moved to the QueueListener
-            'tieflader': {
-                'handlers': ['file', 'guiHandler', 'console'], 'propagate': False, 'level': f'{app_level}',
+            APP_NAME: {
+                'handlers': ['file', 'guiHandler', 'console'], 'propagate': False, 'level': DefaultLogLevel.level,
                 },
             # Log Window Logger
             'gui_logger': {
@@ -73,7 +71,7 @@ def setup_logging(logging_queue):
                 },
             # Module loggers
             '': {
-                'handlers': ['queueHandler'], 'propagate': False, 'level': f'{app_level}',
+                'handlers': ['queueHandler'], 'propagate': False, 'level': DefaultLogLevel.level,
                 }
             }
         }
@@ -103,11 +101,11 @@ def setup_log_queue_listener(logger, queue):
 
 
 def init_logging(logger_name):
-    print('Logger requested by: ',
-          Path(sys._getframe().f_back.f_code.co_filename).name,
-          sys._getframe().f_back.f_code.co_name)
-
     logger_name = logger_name.replace('modules.', '')
     logger = logging.getLogger(logger_name)
-    logger.setLevel(logging.DEBUG)
+
+    print('Logger requested by: ',
+          Path(sys._getframe().f_back.f_code.co_filename).name,
+          sys._getframe().f_back.f_code.co_name, logging.getLevelName(logger.getEffectiveLevel()))
+
     return logger

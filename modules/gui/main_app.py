@@ -20,16 +20,16 @@ _ = lang.gettext
 
 
 class MainApp(QtWidgets.QApplication):
-    def __init__(self, version, exception_hook: GuiExceptionHook=None):
+    def __init__(self, version, app_exception_hook: GuiExceptionHook=None):
         super(MainApp, self).__init__(sys.argv)
 
         self.version = version
 
         self.ui = MainWindow(self)
 
-        if exception_hook:
-            exception_hook.app = self
-            exception_hook.setup_signal_destination(self.app_exception)
+        if app_exception_hook:
+            app_exception_hook.app = self
+            app_exception_hook.setup_signal_destination(self.app_exception)
 
         # self.system_tray = QSystemTrayIcon(self.ui.app_icon, self)
         # self.system_tray.hide()

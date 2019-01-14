@@ -6,6 +6,8 @@ import numpy as np
 from PIL import Image
 from pytoshop.enums import ColorChannel, ColorMode
 from pytoshop.user import nested_layers
+
+from modules.image_resize import Resize
 from modules.log import init_logging
 
 LOGGER = init_logging(__name__)
@@ -34,7 +36,7 @@ class PyShop:
     default_resample_filter = Image.BICUBIC
 
     def __init__(self,
-                 target_size: Tuple[int, int]=(1920, 1080), resampling_filter=None
+                 target_size: Tuple[int, int]=(1920, 1080), resampling_filter=None, resize_mode=None
                  ):
         # --- List holding Psd layers ---
         self.layer_ls: List[nested_layers.Layer] = list()
@@ -46,7 +48,7 @@ class PyShop:
 
         # --- Pillow Resampling Filter ---
         self.resample_filter = self.default_resample_filter
-        if resampling_filter is not None:
+        if resampling_filter:
             self.resample_filter = resampling_filter
 
     @staticmethod
@@ -60,7 +62,9 @@ class PyShop:
     def _resize_image(self, pil_img: Image):
         """ Resize Layer content image to psd instance size if necessary """
         if pil_img.size != self.size:
-            return pil_img.resize(self.size, resample=self.resample_filter)
+            return Resize.resize_contain(pil_img, self.size, resample=self.resample_filter,
+                                         bg_color=(0, 0, 0, 0)
+                                         )
 
         return pil_img
 
@@ -115,6 +119,7 @@ class PyShop:
 
     def add_image_as_layer(self, image_file: Union[Path, str]):
         """ Append an image to the PSD file """
+        1 / 0
         image_file = Path(image_file)
 
         # Test if image exists and is supported

@@ -4,24 +4,17 @@
     Imported only -ONCE- from main.
 """
 import sys
-from multiprocessing import Queue
+
+from modules.log import DefaultLogLevel
 from modules.settings import AppSettings
-from modules.log import init_logging, setup_logging, DefaultLogLevel
 
 # Set log level based on Release / Debug
 if getattr(sys, '_MEIPASS', False):
     DefaultLogLevel.level = 'INFO'
-
-logging_queue = Queue(-1)
-setup_logging(logging_queue)
-LOGGER = init_logging('knecht_init')
-
-AppSettings.log_queue = logging_queue
-AppSettings.load_ui_resources()
+else:
+    DefaultLogLevel.level = 'DEBUG'
 
 try:
     AppSettings.load()
 except Exception as e:
-    LOGGER.error('Error loading settings from file!\n%s', e)
-
-LOGGER.info('Knecht modules initialisation method finished.')
+    print('Error loading settings from file!\n%s', e)

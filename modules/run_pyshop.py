@@ -32,6 +32,7 @@ class CreateLayeredPsdThread(Thread):
 
     def __init__(self, parent, files: List[Path]):
         super(CreateLayeredPsdThread, self).__init__()
+
         self.parent = parent
         self.files = files
         self.abort = False

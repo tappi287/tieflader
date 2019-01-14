@@ -69,7 +69,7 @@ class GuiExceptionHook:
         LOGGER.critical(exception_msg)
 
         # Write to exception log file
-        exception_file_name = datetime.datetime.now().strftime('Tiffy_Exception_%Y-%m-%d_%H%M%S.log')
+        exception_file_name = datetime.datetime.now().strftime('Tieflader_Exception_%Y-%m-%d_%H%M%S.log')
         settings_dir = Path(get_settings_dir())
         exception_file = settings_dir / exception_file_name
 
