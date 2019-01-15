@@ -121,6 +121,7 @@ class PyShop:
 
     def add_image_as_layer(self, image_file: Union[Path, str]):
         """ Append an image to the PSD file """
+        1 / 0
         image_file = Path(image_file)
 
         # Test if image exists and is supported
