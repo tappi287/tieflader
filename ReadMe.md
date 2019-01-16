@@ -28,13 +28,14 @@ and a few others. The GUI is build in
 ##
 
 ### Current Limitations
-  - Image scaling does not respect aspect ratios, the current version will
-  *not* preserve the aspect ratios of input images and forcefully scale
-  everything to the size you have set for the Psd document.
+  - duplicating layers in Photoshop will not add an _copy_ suffix to layer names
   - Just like in Photoshop itself, image down scaling is done without 
   proper gamma conversion. <a href="http://entropymine.com/imageworsener/gamma/">
   Read more about this very common issue
   </a>
+  <del>- Image scaling does not respect aspect ratios, the current version will
+  *not* preserve the aspect ratios of input images and forcefully scale
+  everything to the size you have set for the Psd document.</del>
 
 ##
 
