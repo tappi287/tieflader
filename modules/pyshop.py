@@ -4,6 +4,7 @@ from typing import Union, Tuple, List
 import pytoshop
 import numpy as np
 from PIL import Image
+from libtiff import TIFF
 from pytoshop.enums import ColorChannel, ColorMode
 from pytoshop.user import nested_layers
 
@@ -70,10 +71,49 @@ class PyShop:
 
         return pil_img
 
+    @staticmethod
+    def _open_tiff_image(file: Path) -> Union[None, Image.Image]:
+        """ Open tiff files using libtiff """
+        # Open with libtiff
+        try:
+            LOGGER.info('Loading tiff file with libtiff.')
+            tf = TIFF.open(file, mode='r')
+            img = tf.read_image()
+        except Exception as e:
+            LOGGER.error(e)
+            return None
+
+        # Convert none 8bit depth images
+        if img.dtype == np.float32:
+            # Convert 32bit float images to 8bit integer
+            img = np.uint8(img * 255)
+        elif img.dtype == np.uint16:
+            # Convert 16bit integer[0 - 65535] to 8bit integer [0-255]
+            img = np.uint8(img / 256)
+
+        return Image.fromarray(img)
+
+    def _open_image(self, fb, file: Path) -> Union[None, Image.Image]:
+        """ Try to load an image file to pil.Image object using PIL or libtiff """
+        img = None
+
+        try:
+            # Try to load image using Pillow
+            img = Image.open(fb)
+        except Exception as e:
+            LOGGER.error(e)
+
+            # Try to use libtiff on 16/32bit tiff images
+            if file.suffix.casefold() in ['.tif', '.tiff']:
+                # Open with libtiff
+                img = self._open_tiff_image(file)
+
+        return img
+
     def _load_image_to_numpy_channels(self, image_file: Path):
         """ Open Image file with Pillow and create list containing each channel as NumPy array """
-        with open(image_file, 'rb') as f:
-            img = Image.open(f)
+        with open(image_file.as_posix(), 'rb') as f:
+            img = self._open_image(f, image_file)
 
             # Resize image with Pillow if necessary
             img = self._resize_image(img)
