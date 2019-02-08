@@ -10,10 +10,12 @@ tief_files = [('locale/de/LC_MESSAGES/*.mo', 'locale/de/LC_MESSAGES'),
 
 tief_hidden_imports = ["PySide2.QtXml"]
 # tief_binaries = [('/usr/local/lib/libtiff.dylib', '.')]
+tief_binaries = [('/System/Library/Frameworks/Tk.framework/Tk', 'tk'),
+		         ('/System/Library/Frameworks/Tcl.framework/Tcl', 'tcl')]
 
 a = Analysis(['tieflader.py'],
              pathex=['/Users/stefan/PycharmProjects/tieflader'],
-             binaries=[],
+             binaries=tief_binaries,
              datas=tief_files,
              hiddenimports=tief_hidden_imports,
              hookspath=[],
