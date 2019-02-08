@@ -9,6 +9,7 @@ tief_files = [('locale/de/LC_MESSAGES/*.mo', 'locale/de/LC_MESSAGES'),
               ('license.txt', '.'),]
 
 tief_hidden_imports = ["PySide2.QtXml"]
+# tief_binaries = [('/usr/local/lib/libtiff.dylib', '.')]
 
 a = Analysis(['tieflader.py'],
              pathex=['/Users/stefan/PycharmProjects/tieflader'],
@@ -24,6 +25,7 @@ a = Analysis(['tieflader.py'],
              noarchive=False)
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
+
 exe = EXE(pyz,
           a.scripts,
           a.binaries,

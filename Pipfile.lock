@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "61e8d73450178cfc3fae7494527322691fcc6d916e8b85a7b4c5fa5875cb3c83"
+            "sha256": "0f679fe6c1d67ad2b01a0d59b41e662a24c769f793ca4d55a9400ed34825d0e9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -71,12 +71,13 @@
             ],
             "version": "==0.17.1"
         },
-        "libtiff": {
+        "imageio": {
             "hashes": [
-                "sha256:8b80660541bfc51309b22dd676bcc94a8d77324b00fba3d331b7f564775f17a6"
+                "sha256:1a2bbbb7cd38161340fa3b14d806dfbf914abf3ee6fd4592af2afb87d049f209",
+                "sha256:42e65aadfc3d57a1043615c92bdf6319b67589e49a0aae2b985b82144aceacad"
             ],
             "index": "pypi",
-            "version": "==0.4.2"
+            "version": "==2.5.0"
         },
         "lxml": {
             "hashes": [
@@ -218,13 +219,6 @@
             ],
             "index": "pypi",
             "version": "==1.2.1"
-        },
-        "pywin32-ctypes": {
-            "hashes": [
-                "sha256:24ffc3b341d457d48e8922352130cf2644024a4ff09762a2261fd34c36ee5942",
-                "sha256:9dc2d991b3479cc2df15930958b674a48a227d5361d413827a4cfd0b5876fc98"
-            ],
-            "version": "==0.2.0"
         },
         "six": {
             "hashes": [

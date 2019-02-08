@@ -4,7 +4,7 @@ from typing import Union, Tuple, List
 import pytoshop
 import numpy as np
 from PIL import Image
-from libtiff import TIFF
+from imageio import imread
 from pytoshop.enums import ColorChannel, ColorMode
 from pytoshop.user import nested_layers
 
@@ -72,13 +72,11 @@ class PyShop:
         return pil_img
 
     @staticmethod
-    def _open_tiff_image(file: Path) -> Union[None, Image.Image]:
-        """ Open tiff files using libtiff """
-        # Open with libtiff
+    def _open_with_imageio(file: Path) -> Union[None, Image.Image]:
+        """ Open image files failed in Pillow with imageio """
         try:
-            LOGGER.info('Loading tiff file with libtiff.')
-            tf = TIFF.open(file, mode='r')
-            img = tf.read_image()
+            LOGGER.info('Loading image file with imageio.')
+            img = imread(file.as_posix())
         except Exception as e:
             LOGGER.error(e)
             return None
@@ -94,7 +92,7 @@ class PyShop:
         return Image.fromarray(img)
 
     def _open_image(self, fb, file: Path) -> Union[None, Image.Image]:
-        """ Try to load an image file to pil.Image object using PIL or libtiff """
+        """ Try to load an image file to pil.Image object using PIL or imageio """
         img = None
 
         try:
@@ -103,10 +101,9 @@ class PyShop:
         except Exception as e:
             LOGGER.error(e)
 
-            # Try to use libtiff on 16/32bit tiff images
-            if file.suffix.casefold() in ['.tif', '.tiff']:
-                # Open with libtiff
-                img = self._open_tiff_image(file)
+            # Try to use imageio on 16/32bit tiff images
+            # Open with libtiff
+            img = self._open_with_imageio(file)
 
         return img
 
