@@ -31,6 +31,13 @@ class SetupWidget(QObject):
         logging.root.setLevel(current_log_level)
 
 
+def replace_widget(old_widget, new_widget):
+    parent = old_widget.parent()
+    layout = parent.layout()
+    layout.replaceWidget(old_widget, new_widget)
+    old_widget.deleteLater()
+
+
 class ConnectCall(QObject):
     def __init__(self, *args, target=None, parent=None):
         super(ConnectCall, self).__init__(parent=parent)

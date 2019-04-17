@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Tieflader"
-#define MyAppVersion "0.85"
+#define MyAppVersion "0.91"
 #define MyAppPublisher "Stefan Tapper"
 #define MyAppURL "https://github.com/tappi287/tieflader"
 #define MyAppExeName "Tieflader.exe"

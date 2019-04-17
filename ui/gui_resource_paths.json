@@ -3,15 +3,17 @@
 		"tieflader": "tieflader.ui"
 	},
 	"icon_paths": {
+		"setting": ":/main/res/setting.png",
+		"arrow": ":/main/res/arrow.png",
+		"arrow_up": ":/main/res/arrow_up.png",
+		"info": ":/main/res/info.png",
+		"folder": ":/main/res/folder.png",
+		"check_box": ":/main/res/check_box.png",
+		"check_box_empty": ":/main/res/check_box_empty.png",
+		"splash_screen": ":/main/res/splash_screen.webp",
 		"save_alt": ":/main/res/save_alt.png",
 		"close": ":/main/res/close.png",
 		"img": ":/main/res/img.png",
-		"tieflader_icon": ":/main/res/tieflader_icon.png",
-		"splash_screen": ":/main/res/splash_screen.webp",
-		"check_box": ":/main/res/check_box.png",
-		"check_box_empty": ":/main/res/check_box_empty.png",
-		"folder": ":/main/res/folder.png",
-		"info": ":/main/res/info.png",
-		"setting": ":/main/res/setting.png"
+		"tieflader_icon": ":/main/res/tieflader_icon.png"
 	}
 }
