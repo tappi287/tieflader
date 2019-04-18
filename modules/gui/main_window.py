@@ -45,8 +45,8 @@ class MainWindow(QMainWindow):
         # --- Setup main window resolution box ---
         # Setup expand area
         self.res_btn: QPushButton
-        self.expand = KnechtExpandableWidget(self.expand_widget, self.res_btn, self.res_widget)
-        self.expand.expand_height = self.expand_height
+        # self.expand = KnechtExpandableWidget(self.expand_widget, self.res_btn, self.res_widget)
+        # self.expand.expand_height = self.expand_height
 
         # Setup Resolution line edits
         self.res_x_edit = self.replace_resolution_edit(self.res_x_edit)
@@ -68,7 +68,8 @@ class MainWindow(QMainWindow):
         QTimer.singleShot(10, self.delayed_setup)
 
     def delayed_setup(self):
-        self.expand.toggle_expand(immediate=True)
+        # self.expand.toggle_expand(immediate=True)
+        pass
 
     def closeEvent(self, close_event):
         close_event.ignore()

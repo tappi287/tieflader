@@ -3,6 +3,7 @@ from pathlib import Path
 
 from PySide2 import QtWidgets
 from PySide2.QtCore import QTimer, QEvent
+from PySide2.QtGui import QFileOpenEvent
 
 from modules.app_globals import APP_NAME
 from modules.detect_language import get_translation
@@ -46,15 +47,23 @@ class MainApp(QtWidgets.QApplication):
         self.splash = show_splash_screen_movie(self)
         self.splash.movie.finished.connect(self.show_ui)
 
-        self.installEventFilter(self)
+        self.instance().installEventFilter(self)
+        self.instance().event = self.event
 
         # Make sure we show the ui if there is a problem with the splash screen movie
         QTimer().singleShot(2500, self.show_ui)
         QTimer().singleShot(1000, self.queue_startup_files)
 
+    def event(self, event):
+        return self.file_open_event(event)
+
     def eventFilter(self, obj, event):
-        if event.type() == QEvent.FileOpen:
-            LOGGER.debug('Open file event with url: %s', event.url())
+        return self.file_open_event(event)
+
+    def file_open_event(self, event):
+        if event.type() == QEvent.FileOpen or type(event) is QFileOpenEvent:
+            LOGGER.debug('Open file event with url: %s %s', event.url(), event)
+            self.ui.res_btn.setText(str(event.url()))
 
             url = event.url()
             if not url.isLocalFile():

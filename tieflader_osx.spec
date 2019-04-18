@@ -6,7 +6,8 @@ tief_files = [('locale/de/LC_MESSAGES/*.mo', 'locale/de/LC_MESSAGES'),
               ('locale/en/LC_MESSAGES/*.mo', 'locale/en/LC_MESSAGES'),
               ('ui/gui_resource*', 'ui'),
               ('ui/tieflader*', 'ui'),
-              ('license.txt', '.'),]
+              ('license.txt', '.'),
+              ('Info.plist', '.'),]
 
 tief_hidden_imports = ["PySide2.QtXml"]
 # tief_binaries = [('/usr/local/lib/libtiff.dylib', '.')]
@@ -44,4 +45,15 @@ exe = EXE(pyz,
 app = BUNDLE(exe,
              name='Tieflader.app',
              icon='ui/AppIcon.icns',
-             bundle_identifier=None)
+             bundle_identifier=None,
+             info_plist={
+                'NSPrincipleClass': 'NSApplication',
+                'NSAppleScriptEnabled': False,
+                'CFBundleDocumentTypes': [
+                        {
+                        'CFBundleTypeExtensions': ['png', 'jpg', 'jpeg', 'bmp', 'tif', 'tiff'],
+                        'CFBundleTypeRole': 'Viewer',
+                        }
+                    ]
+                 },
+             )
