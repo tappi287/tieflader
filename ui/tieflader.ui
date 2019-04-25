@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>525</width>
-    <height>450</height>
+    <width>458</width>
+    <height>420</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,12 +78,6 @@ QCommandLinkButton::hover {background: rgb(210, 210, 210);}</string>
     </item>
     <item>
      <widget class="QWidget" name="bottomWidget" native="true">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>1</verstretch>
-       </sizepolicy>
-      </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
         <number>0</number>
@@ -164,87 +158,68 @@ QCommandLinkButton::hover {background: rgb(210, 210, 210);}</string>
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="expand_widget" native="true">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+     <widget class="QPushButton" name="res_btn">
+      <property name="text">
+       <string/>
       </property>
+      <property name="icon">
+       <iconset resource="tieflader_res.qrc">
+        <normaloff>:/main/res/arrow_up.png</normaloff>
+        <normalon>:/main/res/arrow.png</normalon>:/main/res/arrow_up.png</iconset>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="res_widget" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QPushButton" name="res_btn">
+        <layout class="QHBoxLayout" name="res_hori_layout">
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="res_label">
+           <property name="text">
+            <string>Zielauflösung in px</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="res_x_edit"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="res_x_label">
+           <property name="text">
+            <string>x</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="res_y_edit"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="open_psd_box">
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="tieflader_res.qrc">
-           <normaloff>:/main/res/arrow_up.png</normaloff>
-           <normalon>:/main/res/arrow.png</normalon>:/main/res/arrow_up.png</iconset>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
+          <string>PSD Datei nach dem Erstellen öffnen</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QWidget" name="res_widget" native="true">
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <layout class="QVBoxLayout" name="res_vert_layout">
-            <property name="spacing">
-             <number>4</number>
-            </property>
-            <item>
-             <layout class="QHBoxLayout" name="res_hori_layout">
-              <property name="spacing">
-               <number>4</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="res_label">
-                <property name="text">
-                 <string>Zielauflösung in px</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="res_x_edit"/>
-              </item>
-              <item>
-               <widget class="QLabel" name="res_x_label">
-                <property name="text">
-                 <string>x</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="res_y_edit"/>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="open_psd_box">
-              <property name="text">
-               <string>PSD Datei nach dem Erstellen öffnen</string>
-              </property>
-             </widget>
-            </item>
-            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-             <widget class="QPushButton" name="adv_settings_btn">
-              <property name="text">
-               <string>PushButton</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QPushButton" name="adv_settings_btn">
+         <property name="text">
+          <string>PushButton</string>
+         </property>
         </widget>
        </item>
       </layout>
@@ -257,7 +232,7 @@ QCommandLinkButton::hover {background: rgb(210, 210, 210);}</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>525</width>
+     <width>458</width>
      <height>18</height>
     </rect>
    </property>

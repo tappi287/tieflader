@@ -80,6 +80,7 @@ class AppSettings:
         open_editor=False,
         editor_path='.',
         psd_size=(1920, 1080),
+        window=(0, 0, 0, 0),
         resampling_filter='Bicubic'
         )
 

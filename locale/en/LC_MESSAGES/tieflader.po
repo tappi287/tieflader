@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-04-25 13:09+0200\n"
+"POT-Creation-Date: 2019-04-25 16:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,39 +27,39 @@ msgstr "Exception occurred:<br><br>"
 msgid "Schwerwiegender Fehler"
 msgstr "Serious error"
 
-#: modules/gui\main_window.py:116
-msgid "Bilddateien in dieses Fenster ziehen um PSD zu erstellen"
-msgstr "Drag image files into this window to create PSD"
+#: modules/gui\main_window.py:119
+msgid "Bilddateien in dieses Fenster oder auf das Dock Icon ziehen um PSD zu erstellen"
+msgstr "Drag images onto this window or to the dock icon to create a PSD file"
 
-#: modules/gui\main_window.py:118
+#: modules/gui\main_window.py:121
 msgid "Vorgang abbrechen"
 msgstr "Cancel the process"
 
-#: modules/gui\main_window.py:119
+#: modules/gui\main_window.py:122
 msgid "< Keine zuletzt verwendete Datei >"
 msgstr "< No last used file >"
 
-#: modules/gui\main_window.py:121 modules/widgets\menu_settings.py:22
+#: modules/gui\main_window.py:124 modules/widgets\menu_settings.py:22
 msgid "Einstellungen"
 msgstr "Settings"
 
-#: modules/gui\main_window.py:122
+#: modules/gui\main_window.py:125
 msgid "Einstellungen einblenden"
 msgstr "Show settings"
 
-#: modules/gui\main_window.py:123
+#: modules/gui\main_window.py:126
 msgid "Zielauflösung in px"
 msgstr "Resolution in px"
 
-#: modules/gui\main_window.py:124 modules/widgets\menu_settings.py:37
+#: modules/gui\main_window.py:127 modules/widgets\menu_settings.py:37
 msgid "Erweiterte Einstellungen"
 msgstr "Advanced Settings"
 
-#: modules/gui\main_window.py:128 modules/widgets\menu_settings.py:48
+#: modules/gui\main_window.py:131 modules/widgets\menu_settings.py:48
 msgid "Mit benutzerdefiniertem Editor öffnen"
 msgstr "Open with custom editor"
 
-#: modules/gui\main_window.py:130 modules/widgets\menu_settings.py:50
+#: modules/gui\main_window.py:133 modules/widgets\menu_settings.py:50
 msgid "Mit Standardanwendung öffnen"
 msgstr "Open with standard application"
 
@@ -109,7 +109,7 @@ msgstr "About Qt"
 
 #: modules/widgets\menu_info.py:37
 msgid "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Besuche den <a href=\"https://github.com/tappi287/tieflader\">Quelltext@github</a> dieser Software!<br><br>{0} ist <b>Freie Software</b>: Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation, Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren veröffentlichten Version, weiter verteilen und/oder modifizieren.<br><br>Dieses Programm wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR,; sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten.<br><br>Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe <a href=\"http://www.gnu.org/licenses/\">hier</a>."
-msgstr "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Visit the <a href=\"https://github.com/tappi287/tieflader\">Source@github</a> of this software!<br><br>{0} is <b>free software</b>: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or(at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with this program. If not, see <a href=\"https://www.gnu.org/licenses/\">here</a>."
+msgstr "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Visit the <a href=\https://github.com/tappi287/tieflader\>Source@github</a> of this software!<br><br>{0} is <b>free software</b>: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or(at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with this program. If not, see <a href=\https://www.gnu.org/licenses/\>here</a>."
 
 #: modules/widgets\menu_language.py:19
 msgid "Sprache"

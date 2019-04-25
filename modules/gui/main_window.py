@@ -116,7 +116,7 @@ class MainWindow(QMainWindow):
         self.open_psd_box.blockSignals(False)
 
     def translations(self):
-        self.appLabel.setText(_('Bilddateien in dieses Fenster ziehen um PSD zu erstellen'))
+        self.appLabel.setText(_('Bilddateien in dieses Fenster oder auf das Dock Icon ziehen um PSD zu erstellen'))
 
         self.cancelBtn.setText(_('Vorgang abbrechen'))
         self.lastFileBtn.setText(_('< Keine zuletzt verwendete Datei >'))

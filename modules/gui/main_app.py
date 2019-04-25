@@ -2,9 +2,9 @@ import sys
 from pathlib import Path
 
 from PySide2 import QtWidgets
-from PySide2.QtCore import QTimer, QEvent
-from PySide2.QtGui import QFileOpenEvent
+from PySide2.QtCore import QEvent, QTimer, QRect
 
+from modules import AppSettings
 from modules.app_globals import APP_NAME
 from modules.detect_language import get_translation
 from modules.gui.main_window import MainWindow
@@ -43,12 +43,13 @@ class MainApp(QtWidgets.QApplication):
 
         # self.system_tray = QSystemTrayIcon(self.ui.app_icon, self)
         # self.system_tray.hide()
+        self.aboutToQuit.connect(self.about_to_quit)
 
         self.splash = show_splash_screen_movie(self)
         self.splash.movie.finished.connect(self.show_ui)
 
         # Make sure we show the ui if there is a problem with the splash screen movie
-        QTimer().singleShot(2500, self.show_ui)
+        QTimer().singleShot(1500, self.show_ui)
         QTimer().singleShot(1000, self.queue_startup_files)
 
     def event(self, event):
@@ -77,7 +78,9 @@ class MainApp(QtWidgets.QApplication):
         self.open_file_queue = list()
 
     def show_ui(self):
-        """ Used when splash screen finished """
+        """ Used when splash screen finished or after timeout """
+        self._load_ui_position()
+
         if self.ui.isVisible():
             return
 
@@ -86,6 +89,17 @@ class MainApp(QtWidgets.QApplication):
             self.splash.deleteLater()
 
         self.ui.show()
+
+    def _load_ui_position(self):
+        desk = self.desktop().screenGeometry(self.ui)
+        saved_size = AppSettings.app.get('window')
+
+        if saved_size and saved_size[0]:
+            ui_rect = QRect(*saved_size)
+            if desk.contains(ui_rect.topLeft()) and desk.contains(ui_rect.bottomRight()):
+                self.ui.setGeometry(ui_rect)
+                LOGGER.info('Restored window position %s %s in desktop: %s',
+                            ui_rect.topLeft(), ui_rect.bottomLeft(), desk)
 
     def show_tray_notification(self,
                                title=_(APP_NAME),
@@ -121,4 +135,5 @@ class MainApp(QtWidgets.QApplication):
         GenericMsgBox.warning(self.ui, _("Schwerwiegender Fehler"), msg)
 
     def about_to_quit(self):
-        pass
+        g = self.ui.geometry()
+        AppSettings.app['window'] = (g.x(), g.y(), g.width(), g.height())

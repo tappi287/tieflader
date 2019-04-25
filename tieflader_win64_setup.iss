@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Tieflader"
-#define MyAppVersion "0.91"
+#define MyAppVersion "1.0"
 #define MyAppPublisher "Stefan Tapper"
 #define MyAppURL "https://github.com/tappi287/tieflader"
 #define MyAppExeName "Tieflader.exe"
@@ -24,7 +24,7 @@ DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 LicenseFile="dist\tieflader\license.txt"
 OutputDir="release"
-OutputBaseFilename=Tieflader_Setup_win64
+OutputBaseFilename=Tieflader_Setup_{#MyAppVersion}_win64
 SetupIconFile="ui\Icon.ico"
 Compression=lzma
 SolidCompression=yes
