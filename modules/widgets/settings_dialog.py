@@ -182,11 +182,11 @@ class PhotoshopSettings(SettingsDialog):
         vbox.addLayout(dialog_btn_box)
 
         ok_btn = QPushButton(_('OK'), self)
-        ok_btn.setDefault(False)
+        ok_btn.setDefault(True)
         ok_btn.pressed.connect(self.accept)
 
         cancel_btn = QPushButton(_('Abbrechen'), self)
-        cancel_btn.setDefault(True)
+        cancel_btn.setDefault(False)
         cancel_btn.pressed.connect(self.reject)
 
         reset_btn = QPushButton(_('Zurücksetzen'))

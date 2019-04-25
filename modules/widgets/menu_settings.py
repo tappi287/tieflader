@@ -25,7 +25,7 @@ class SettingsMenu(QMenu):
         check_icon = IconRsc.get_icon('check_box_empty')
         check_icon.addPixmap(IconRsc.get_pixmap('check_box'), QIcon.Normal, QIcon.On)
 
-        self.open_action = QAction(check_icon, _('PSD Datei nach dem Erstellen öffnen'), self)
+        self.open_action = QAction(check_icon, _('PSD Datei nach dem Erstellen automatisch öffnen'), self)
         self.open_action.setCheckable(True)
         self.open_action.setChecked(AppSettings.app['open_editor'])
         self.open_action.toggled.connect(self.toggle_psd_open_action)
@@ -49,7 +49,11 @@ class SettingsMenu(QMenu):
         else:
             self.ui.lastFileBtn.setDescription(_('Mit Standardanwendung öffnen'))
 
+        # Update resolution buttons from app settings
+        self.ui.update_resolution(from_settings=True)
+
     def open_settings_dialog(self):
         psd_settings_window = PhotoshopSettings(self.ui)
-        psd_settings_window.finished.connect(self.update_btn_desc)
+        psd_settings_window.accepted.connect(self.update_btn_desc)
+        psd_settings_window.rejected.connect(self.update_btn_desc)
         psd_settings_window.open()

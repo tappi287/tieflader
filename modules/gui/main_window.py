@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from PySide2.QtCore import QTimer, Slot, Qt
-from PySide2.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QCheckBox
+from PySide2.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QCheckBox, QLabel
 
 from modules import AppSettings
 from modules.app_globals import Resource
@@ -44,12 +44,12 @@ class MainWindow(QMainWindow):
         # --- Setup main window resolution box ---
         # Setup expand area
         self.res_btn: QPushButton
+        self.res_label: QLabel
 
         # Setup Resolution line edits
         self.res_x_edit = self.replace_resolution_edit(self.res_x_edit)
         self.res_y_edit = self.replace_resolution_edit(self.res_y_edit)
-        self.res_x_edit.setText(str(AppSettings.app['psd_size'][0]))
-        self.res_y_edit.setText(str(AppSettings.app['psd_size'][1]))
+        self.update_resolution(from_settings=True)
         self.res_x_edit.textEdited.connect(self.update_resolution)
         self.res_y_edit.textEdited.connect(self.update_resolution)
 
@@ -93,9 +93,13 @@ class MainWindow(QMainWindow):
         return new_widget
 
     @Slot()
-    def update_resolution(self):
+    def update_resolution(self, from_settings=False):
         def limit_res(res):
             return max(0, min(19999, res))
+
+        if from_settings is True:
+            self.res_x_edit.setText(str(AppSettings.app['psd_size'][0]))
+            self.res_y_edit.setText(str(AppSettings.app['psd_size'][1]))
 
         x, y = int(self.res_x_edit.text()), int(self.res_y_edit.text())
         x, y = limit_res(x), limit_res(y)
@@ -119,6 +123,7 @@ class MainWindow(QMainWindow):
 
         self.res_btn.setText(_('Einstellungen'))
         self.res_btn.setStatusTip(_('Einstellungen einblenden'))
+        self.res_label.setText(_('Zielauflösung in px'))
         self.adv_settings_btn.setText(_('Erweiterte Einstellungen'))
 
         editor = Path(AppSettings.app['editor_path'])
