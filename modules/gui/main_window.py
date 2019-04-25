@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from PySide2.QtCore import QTimer, Slot
-from PySide2.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
+from PySide2.QtCore import QTimer, Slot, Qt
+from PySide2.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QCheckBox
 
 from modules import AppSettings
 from modules.app_globals import Resource
@@ -11,7 +11,6 @@ from modules.gui.gui_utils import SetupWidget, replace_widget
 from modules.gui.icon_resource import IconRsc
 from modules.gui.main_menu import MainWindowMenu
 from modules.log import init_logging
-from modules.widgets.expandable_widget import KnechtExpandableWidget
 from modules.widgets.progress_overlay import ProgressOverlay
 from modules.widgets.settings_dialog import ResolutionLineEdit
 
@@ -45,8 +44,6 @@ class MainWindow(QMainWindow):
         # --- Setup main window resolution box ---
         # Setup expand area
         self.res_btn: QPushButton
-        # self.expand = KnechtExpandableWidget(self.expand_widget, self.res_btn, self.res_widget)
-        # self.expand.expand_height = self.expand_height
 
         # Setup Resolution line edits
         self.res_x_edit = self.replace_resolution_edit(self.res_x_edit)
@@ -56,11 +53,24 @@ class MainWindow(QMainWindow):
         self.res_x_edit.textEdited.connect(self.update_resolution)
         self.res_y_edit.textEdited.connect(self.update_resolution)
 
+        # Setup expandable resolution widget
+        self.res_widget.setVisible(self.res_btn.isChecked())
+
         # Prepare translations
         self.translations()
 
         # ---- Setup Main Menu ----
         self.main_menu = MainWindowMenu(self)
+
+        # Setup Main Window Open PSD CheckBox
+        self.open_psd_box: QCheckBox
+        self.open_psd_box.setText(self.main_menu.settings_menu.open_action.text())
+        self.open_psd_box.setChecked(self.main_menu.settings_menu.open_action.isChecked())
+        self.open_psd_box.toggled.connect(self.main_menu.settings_menu.open_action.toggle)
+        self.main_menu.settings_menu.open_action.toggled.connect(self._update_psd_box)
+
+        self.adv_settings_btn: QPushButton
+        self.adv_settings_btn.clicked.connect(self.main_menu.settings_menu.open_settings_dialog)
 
         # ---- Setup File Drop ----
         self.drop = FileDrop(self)
@@ -68,7 +78,6 @@ class MainWindow(QMainWindow):
         QTimer.singleShot(10, self.delayed_setup)
 
     def delayed_setup(self):
-        # self.expand.toggle_expand(immediate=True)
         pass
 
     def closeEvent(self, close_event):
@@ -96,14 +105,21 @@ class MainWindow(QMainWindow):
         self.res_x_edit.setText(str(x))
         self.res_y_edit.setText(str(y))
 
+    @Slot()
+    def _update_psd_box(self):
+        self.open_psd_box.blockSignals(True)
+        self.open_psd_box.setChecked(self.main_menu.settings_menu.open_action.isChecked())
+        self.open_psd_box.blockSignals(False)
+
     def translations(self):
         self.appLabel.setText(_('Bilddateien in dieses Fenster ziehen um PSD zu erstellen'))
 
         self.cancelBtn.setText(_('Vorgang abbrechen'))
         self.lastFileBtn.setText(_('< Keine zuletzt verwendete Datei >'))
 
-        self.res_btn.setText(_('Auflösung'))
-        self.res_btn.setStatusTip(_('Auflösungseinstellungen einblenden'))
+        self.res_btn.setText(_('Einstellungen'))
+        self.res_btn.setStatusTip(_('Einstellungen einblenden'))
+        self.adv_settings_btn.setText(_('Erweiterte Einstellungen'))
 
         editor = Path(AppSettings.app['editor_path'])
         if editor.exists() and editor.is_file():

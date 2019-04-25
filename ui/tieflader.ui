@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>525</width>
-    <height>404</height>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <normaloff>:/main/res/tieflader_icon.png</normaloff>:/main/res/tieflader_icon.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">QLabel, QPushButton {font-family: &quot;Segoe UI&quot;, &quot;Helvetica&quot;, &quot;Helvetica Neue&quot;; font-size: 15px;}
-QPushButton {background: rgb(220, 220, 220); border-radius: 5px;}
+   <string notr="true">QLabel, QPushButton, QCheckBox, QLineEdit {font-family: &quot;Segoe UI&quot;, &quot;Helvetica&quot;, &quot;Helvetica Neue&quot;; font-size: 15px;}
+QPushButton {background: rgb(220, 220, 220); border-radius: 5px; padding: 4px 16px;}
 QPushButton::hover {background: rgb(36, 104, 83);}
 QCommandLinkButton {background: none;}
 QCommandLinkButton::hover {background: rgb(210, 210, 210);}</string>
@@ -197,24 +197,52 @@ QCommandLinkButton::hover {background: rgb(210, 210, 210);}</string>
         <widget class="QWidget" name="res_widget" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QLabel" name="res_label">
-            <property name="text">
-             <string>Zielauflösung in px</string>
+           <layout class="QVBoxLayout" name="res_vert_layout">
+            <property name="spacing">
+             <number>4</number>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="res_x_edit"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="res_x_label">
-            <property name="text">
-             <string>x</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="res_y_edit"/>
+            <item>
+             <layout class="QHBoxLayout" name="res_hori_layout">
+              <property name="spacing">
+               <number>4</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="res_label">
+                <property name="text">
+                 <string>Zielauflösung in px</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="res_x_edit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="res_x_label">
+                <property name="text">
+                 <string>x</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="res_y_edit"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="open_psd_box">
+              <property name="text">
+               <string>PSD Datei nach dem Erstellen öffnen</string>
+              </property>
+             </widget>
+            </item>
+            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+             <widget class="QPushButton" name="adv_settings_btn">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -252,5 +280,22 @@ QCommandLinkButton::hover {background: rgb(210, 210, 210);}</string>
  <resources>
   <include location="tieflader_res.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>res_btn</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>res_widget</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>74</x>
+     <y>333</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>17</x>
+     <y>345</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

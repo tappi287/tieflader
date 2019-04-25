@@ -10,7 +10,7 @@ from modules.gui.main_app import MainApp
 from modules.app_globals import APP_NAME
 from modules.log import init_logging, setup_log_queue_listener, setup_logging
 
-VERSION = '0.951'
+VERSION = '0.98'
 AppSettings.app['version'] = VERSION
 
 sys.excepthook = GuiExceptionHook.exception_hook

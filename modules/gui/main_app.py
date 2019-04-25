@@ -56,8 +56,7 @@ class MainApp(QtWidgets.QApplication):
 
     def file_open_event(self, event):
         if event.type() == QEvent.FileOpen:
-            LOGGER.warning('Open file event with url: %s %s', event.url(), event)
-            self.ui.res_btn.setText(str(event.url()))
+            LOGGER.info('Open file event with url: %s %s', event.url(), event)
 
             url = event.url()
             if not url.isLocalFile():
@@ -65,7 +64,7 @@ class MainApp(QtWidgets.QApplication):
 
             # Queue files added via FileOpen Event
             local_file_path = Path(url.toLocalFile())
-            LOGGER.warning('Adding local path: %s', local_file_path.as_posix())
+            LOGGER.info('Adding local path: %s', local_file_path.as_posix())
             self.open_file_queue.append(local_file_path)
             self.open_file_timer.start()
             return True
