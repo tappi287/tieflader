@@ -53,5 +53,11 @@ and a few others. The GUI is build in
 2. From your venv/pipenv shell run `pyinstaller tieflader_win.spec`
    to eg. build a windows executable directory or `pyinstaller tieflader_osx.spec`
    to build an OSX app package
-   
 
+
+##### Building Tieflader with macOS drop to dock support
+`PyInstaller 3.4`does not forward OS events from macOS to the executable. Therefore no events will be received when the user is droping files to the dock icon.
+
+You'll need to manually install a patched dev version of `PyInstaller`from <a href="https://github.com/cculianu/pyinstaller/tree/fix_apple_open_document_events">Fix apple open document events</a><br/>
+`pip3 install git+https://github.com/cculianu/pyinstaller@fix_apple_open_document_events`<br/>
+Now add your absolute venv/pipenv path to `Analysis/pathex` list variable inside the `tieflader_osx.spec` file to make sure your local PyInstaller instance will find all the dependencies.
