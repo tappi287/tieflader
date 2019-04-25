@@ -47,9 +47,6 @@ class MainApp(QtWidgets.QApplication):
         self.splash = show_splash_screen_movie(self)
         self.splash.movie.finished.connect(self.show_ui)
 
-        self.instance().installEventFilter(self)
-        self.instance().event = self.event
-
         # Make sure we show the ui if there is a problem with the splash screen movie
         QTimer().singleShot(2500, self.show_ui)
         QTimer().singleShot(1000, self.queue_startup_files)
@@ -57,12 +54,9 @@ class MainApp(QtWidgets.QApplication):
     def event(self, event):
         return self.file_open_event(event)
 
-    def eventFilter(self, obj, event):
-        return self.file_open_event(event)
-
     def file_open_event(self, event):
-        if event.type() == QEvent.FileOpen or type(event) is QFileOpenEvent:
-            LOGGER.debug('Open file event with url: %s %s', event.url(), event)
+        if event.type() == QEvent.FileOpen:
+            LOGGER.warning('Open file event with url: %s %s', event.url(), event)
             self.ui.res_btn.setText(str(event.url()))
 
             url = event.url()
@@ -71,6 +65,7 @@ class MainApp(QtWidgets.QApplication):
 
             # Queue files added via FileOpen Event
             local_file_path = Path(url.toLocalFile())
+            LOGGER.warning('Adding local path: %s', local_file_path.as_posix())
             self.open_file_queue.append(local_file_path)
             self.open_file_timer.start()
             return True
@@ -78,6 +73,7 @@ class MainApp(QtWidgets.QApplication):
         return False
 
     def open_file_timeout(self):
+        LOGGER.info('Adding %s queued files.', len(self.open_file_queue))
         self.queue_startup_files(self.open_file_queue)
         self.open_file_queue = list()
 
@@ -102,10 +98,11 @@ class MainApp(QtWidgets.QApplication):
     def queue_startup_files(self, files: list=None):
         """ Add the file urls of startup arguments or QOpenFile to pyshop """
         img_files = list()
-        files = files or self.argv
+        if files is None:
+            files = self.argv
 
         for entry in files:
-            if not isinstance(entry, str):
+            if not isinstance(entry, (str, Path)):
                 continue
 
             file = Path(entry)

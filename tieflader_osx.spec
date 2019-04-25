@@ -9,13 +9,16 @@ tief_files = [('locale/de/LC_MESSAGES/*.mo', 'locale/de/LC_MESSAGES'),
               ('license.txt', '.'),
               ('Info.plist', '.'),]
 
+# Fixed PyInstaller V3.5 is needed to forward macOS file open events to PyINstaller executable
+# pip3 install git+https://github.com/cculianu/pyinstaller@fix_apple_open_document_events
+
 tief_hidden_imports = ["PySide2.QtXml"]
 # tief_binaries = [('/usr/local/lib/libtiff.dylib', '.')]
 tief_binaries = [('/System/Library/Frameworks/Tk.framework/Tk', 'tk'),
 		         ('/System/Library/Frameworks/Tcl.framework/Tcl', 'tcl')]
 
 a = Analysis(['tieflader.py'],
-             pathex=['/Users/stefan/PycharmProjects/tieflader'],
+             pathex=['/Users/administrator/.local/share/virtualenvs/tieflader-jV4ffsU_/lib/python3.7/site-packages', '/Users/administrator/PycharmProjects/tieflader'],
              binaries=tief_binaries,
              datas=tief_files,
              hiddenimports=tief_hidden_imports,
