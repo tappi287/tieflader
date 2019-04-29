@@ -18,8 +18,7 @@
     <normaloff>:/main/res/tieflader_icon.png</normaloff>:/main/res/tieflader_icon.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">QLabel, QPushButton, QCheckBox, QLineEdit {font-family: &quot;Segoe UI&quot;, &quot;Helvetica&quot;, &quot;Helvetica Neue&quot;; font-size: 15px;}
-QPushButton {background: rgb(220, 220, 220); border-radius: 5px; padding: 4px 16px;}
+   <string notr="true">QPushButton {background: rgb(220, 220, 220); border-radius: 5px; padding: 4px 16px;}
 QPushButton::hover {background: rgb(36, 104, 83);}
 QCommandLinkButton {background: none;}
 QCommandLinkButton::hover {background: rgb(210, 210, 210);}</string>

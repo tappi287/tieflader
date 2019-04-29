@@ -7,6 +7,7 @@ from PySide2.QtCore import QEvent, QTimer, QRect
 from modules import AppSettings
 from modules.app_globals import APP_NAME
 from modules.detect_language import get_translation
+from modules.gui.icon_resource import FontRsc
 from modules.gui.main_window import MainWindow
 from modules.log import init_logging
 from modules.pyshop import PyShop
@@ -25,6 +26,10 @@ class MainApp(QtWidgets.QApplication):
     def __init__(self, version, app_exception_hook=None):
         super(MainApp, self).__init__(sys.argv)
         LOGGER.warning('Sys argv:\n%s', sys.argv)
+
+        FontRsc.init()
+        FontRsc.add_to_font_db(FontRsc.default_font_key)
+        self.setFont(FontRsc.get_font(FontRsc.default_font_key))
 
         self.version = version
         self.argv: list = sys.argv

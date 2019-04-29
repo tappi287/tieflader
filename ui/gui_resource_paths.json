@@ -3,6 +3,7 @@
 		"tieflader": "tieflader.ui"
 	},
 	"icon_paths": {
+		"OpenSans-Regular": ":/main/res/OpenSans-Regular.ttf",
 		"setting": ":/main/res/setting.png",
 		"arrow": ":/main/res/arrow.png",
 		"arrow_up": ":/main/res/arrow_up.png",
