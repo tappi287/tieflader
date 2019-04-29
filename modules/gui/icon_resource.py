@@ -67,12 +67,12 @@ class FontRsc:
         cls.font_storage[font_key] = font_id
         LOGGER.debug('Font loaded and added to db: %s', QFontDatabase.applicationFontFamilies(font_id))
 
-        return QFont(QFontDatabase.applicationFontFamilies(font_id)[0], 8)
+        return QFont(QFontDatabase.applicationFontFamilies(font_id)[0], cls.regular_pixel_size)
 
     @classmethod
     def get_font(cls, font_key) -> QFont():
         if font_key in cls.font_storage.keys():
-            return QFont(QFontDatabase.applicationFontFamilies(cls.font_storage[font_key])[0], 8)
+            return QFont(QFontDatabase.applicationFontFamilies(cls.font_storage[font_key])[0], cls.regular_pixel_size)
 
         if font_key in Resource.icon_paths.keys():
             return cls.add_to_font_db(font_key)
